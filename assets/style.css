@@ -352,6 +352,77 @@ section { padding: 7rem 1.5rem; }
   color: var(--taupe);
 }
 
+/* ── Research ─────────────────────────────── */
+
+.papers {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.papers .group-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.3em;
+  margin: 4.5rem 0 1rem;
+  text-align: center;
+}
+
+.papers .group-title:first-child { margin-top: 0; }
+
+.paper {
+  display: block;
+  padding: 2.2rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s;
+}
+
+.paper:first-of-type, .group-title + .paper { border-top: 1px solid var(--line); }
+
+.paper:hover { background: rgba(255, 255, 255, 0.45); }
+
+.paper .tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.paper h3 {
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  margin-bottom: 0.5rem;
+}
+
+.paper h3::after {
+  content: " ↗";
+  font-size: 0.8em;
+  color: var(--taupe);
+}
+
+.paper .source {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 0.9rem;
+}
+
+.paper p.excerpt {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  max-width: 44rem;
+}
+
+.papers-note {
+  max-width: 52rem;
+  margin: 3rem auto 0;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--taupe);
+}
+
 /* ── Booking ──────────────────────────────── */
 
 .book-grid {
