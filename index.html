@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juvenne — Medical Esthetics by Shanelle Rene Gomez</title>
+  <meta name="description" content="Juvenne is a medical esthetics clinique by Shanelle Rene Gomez — high-end, science-based skin care shaped by a career in modelling, now made accessible.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <header id="site-header">
+    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="book.html" class="nav-book">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 1 · Hero -->
+  <section class="hero" style="padding: 0;">
+    <img class="hero-bg" src="assets/img/hero.jpg" alt="Model with closed eyes and luminous skin — the Juvenne standard">
+    <div>
+      <p class="eyebrow">Medical Esthetics &middot; Clinique</p>
+      <h1>Your First<br>Impression, Perfected</h1>
+      <p class="lede">High-end beauty support from the modelling world — grounded in science, tailored to your skin, and finally made accessible.</p>
+      <a class="btn btn-light" href="book.html">Book a Consultation</a>
+    </div>
+  </section>
+
+  <!-- 2 · Philosophy statement -->
+  <section class="statement">
+    <div class="narrow">
+      <p class="eyebrow">Our Philosophy</p>
+      <h2>Skin is the body's largest organ.<br>We treat it that way.</h2>
+      <p>Every protocol at Juvenne is built on peer-reviewed dermatological research — never trends. Your skin is a living system, and lasting radiance comes from treating it with clinical precision and genuine care. This is beauty as a discipline: measured, evidence-based, and unmistakably visible.</p>
+      <div class="rule"></div>
+    </div>
+  </section>
+
+  <!-- 3 · Services -->
+  <section class="services-wrap">
+    <div class="services-card">
+      <div>
+        <p class="eyebrow">What we offer</p>
+        <h2>Services</h2>
+        <ul>
+          <li>Signature Medical Facials</li>
+          <li>Clinical-Grade Peels &amp; Resurfacing</li>
+          <li>Skin Analysis &amp; Custom Protocols</li>
+          <li>Lymphatic &amp; Sculpting Treatments</li>
+          <li>Camera-Ready Preparation</li>
+        </ul>
+        <a class="btn" href="book.html">Reserve Your Visit</a>
+      </div>
+      <figure class="services-figure">
+        <img src="assets/img/facial-mask.jpg" alt="Clinical facial treatment being applied at Juvenne">
+        <figcaption>In the treatment room</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4 · Founder -->
+  <section>
+    <div class="split">
+      <div class="split-media">
+        <img src="assets/img/portrait-gaze.jpg" alt="Portrait with luminous, healthy skin">
+      </div>
+      <div>
+        <p class="eyebrow">The Founder</p>
+        <h2>From the runway to the treatment room</h2>
+        <p>Shanelle Rene Gomez spent years inside the modelling industry, where a first appearance decides everything. She knows exactly what it takes to be successful in that world — and she built Juvenne to put that knowledge to work for you.</p>
+        <p>With a background in communication science and a licensed esthetician's training, Shanelle pairs an insider's eye with clinical rigour. The standard once reserved for editorial shoots and castings, now within reach.</p>
+        <a class="btn" href="about.html">Meet Shanelle</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="book.html">Book</a>
+    </nav>
+    <p class="fine">&copy; 2026 Juvenne Medical Esthetics. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    const onScroll = () => header.classList.toggle('solid', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+/* ─────────────────────────────────────────────
+   JUVENNE — Medical Esthetics by Shanelle Rene Gomez
+   Editorial, warm-neutral aesthetic
+   ───────────────────────────────────────────── */
+
+:root {
+  --cream: #efe9e1;
+  --cream-2: #e7e0d5;
+  --paper: #f5f1ea;
+  --ink: #2b2723;
+  --ink-soft: #5a5248;
+  --taupe: #8a7d6d;
+  --line: rgba(43, 39, 35, 0.18);
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Type helpers ─────────────────────────── */
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 1.6rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  padding: 1rem 2.6rem;
+  border: 1px solid currentColor;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.btn-light { color: #f3efe8; }
+.btn-light:hover { background: #f3efe8; color: var(--ink); border-color: #f3efe8; }
+
+/* ── Header / nav ─────────────────────────── */
+
+header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 3rem;
+  transition: background 0.35s, box-shadow 0.35s;
+}
+
+header.solid {
+  background: rgba(239, 233, 225, 0.96);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+header.solid .nav-links a, header.solid .brand { color: var(--ink); }
+
+.brand {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #f3efe8;
+}
+
+.brand small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.52rem;
+  letter-spacing: 0.4em;
+  color: inherit;
+  opacity: 0.75;
+  margin-top: 0.15rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.66rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #f3efe8;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active { border-color: currentColor; }
+
+.nav-links a.nav-book {
+  border: 1px solid currentColor;
+  padding: 0.65rem 1.6rem;
+}
+
+.nav-links a.nav-book:hover { background: var(--ink); border-color: var(--ink); }
+
+/* pages without a dark hero get a dark header from the start */
+header.on-light .brand, header.on-light .nav-links a { color: var(--ink); }
+
+/* ── Hero ─────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f3efe8;
+  isolation: isolate;
+  padding: 8rem 1.5rem 6rem;
+}
+
+.hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(rgba(30, 25, 20, 0.45), rgba(30, 25, 20, 0.55));
+}
+
+.hero .eyebrow { color: rgba(243, 239, 232, 0.8); }
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  letter-spacing: 0.28em;
+  margin-bottom: 2rem;
+}
+
+.hero p.lede {
+  max-width: 34rem;
+  margin: 0 auto 3rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: rgba(243, 239, 232, 0.88);
+}
+
+/* smaller page-top banner for inner pages */
+.hero.short { min-height: 62vh; }
+
+/* ── Sections ─────────────────────────────── */
+
+section { padding: 7rem 1.5rem; }
+
+.narrow { max-width: 46rem; margin: 0 auto; text-align: center; }
+
+.statement h2 {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  letter-spacing: 0.22em;
+  margin-bottom: 2rem;
+}
+
+.statement p { color: var(--ink-soft); font-size: 0.95rem; }
+
+.statement .rule {
+  width: 3.5rem;
+  height: 1px;
+  background: var(--taupe);
+  margin: 2.5rem auto 0;
+}
+
+/* ── Services card (framed, like reference) ── */
+
+.services-wrap { background: var(--cream-2); }
+
+.services-card {
+  max-width: 62rem;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 4.5rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.services-card h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: 0.3em;
+  margin-bottom: 2.2rem;
+}
+
+.services-card ul { list-style: none; margin-bottom: 2.8rem; }
+
+.services-card li {
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.services-card li:first-child { border-top: 1px solid var(--line); }
+
+.services-figure { position: relative; }
+
+.services-figure img { aspect-ratio: 3 / 4; object-fit: cover; }
+
+.services-figure figcaption {
+  margin-top: 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  text-align: right;
+}
+
+/* ── Quote strip ──────────────────────────── */
+
+.quote { text-align: center; }
+
+.quote blockquote {
+  max-width: 44rem;
+  margin: 0 auto;
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+}
+
+.quote cite {
+  display: block;
+  margin-top: 2rem;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.64rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ── Split (image + text) ─────────────────── */
+
+.split {
+  max-width: 68rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.split img { aspect-ratio: 4 / 5; object-fit: cover; }
+
+.split h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.8rem;
+}
+
+.split p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1.4rem; }
+
+.split .btn { margin-top: 1.2rem; }
+
+.split.reverse .split-media { order: 2; }
+
+/* ── Pillars (about) ──────────────────────── */
+
+.pillars {
+  max-width: 68rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  text-align: center;
+}
+
+.pillars h3 {
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  margin: 0 0 1.2rem;
+}
+
+.pillars .num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--taupe);
+  display: block;
+  margin-bottom: 1.2rem;
+}
+
+.pillars p { color: var(--ink-soft); font-size: 0.88rem; }
+
+/* ── Gallery ──────────────────────────────── */
+
+.masonry {
+  max-width: 80rem;
+  margin: 0 auto;
+  columns: 3;
+  column-gap: 1.4rem;
+}
+
+.masonry figure {
+  break-inside: avoid;
+  margin-bottom: 1.4rem;
+}
+
+.masonry figcaption {
+  padding: 0.7rem 0.2rem 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ── Booking ──────────────────────────────── */
+
+.book-grid {
+  max-width: 68rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+
+.book-info h2 { font-size: 1.6rem; letter-spacing: 0.24em; margin-bottom: 1.6rem; }
+
+.book-info p { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 1.3rem; }
+
+.book-info .detail {
+  border-top: 1px solid var(--line);
+  padding: 1.1rem 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.book-info .detail:last-of-type { border-bottom: 1px solid var(--line); }
+
+.book-info img { margin-top: 2.5rem; aspect-ratio: 4 / 3; object-fit: cover; }
+
+form.booking {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 3rem 2.6rem;
+}
+
+form.booking label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin: 1.6rem 0 0.5rem;
+}
+
+form.booking label:first-of-type { margin-top: 0; }
+
+form.booking input,
+form.booking select,
+form.booking textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 0.55rem 0.1rem;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+form.booking input:focus,
+form.booking select:focus,
+form.booking textarea:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+form.booking textarea { resize: vertical; min-height: 5.5rem; }
+
+form.booking .btn {
+  margin-top: 2.4rem;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-note {
+  margin-top: 1.4rem;
+  font-size: 0.72rem;
+  color: var(--taupe);
+  text-align: center;
+}
+
+/* ── Footer ───────────────────────────────── */
+
+footer {
+  background: #262119;
+  color: rgba(243, 239, 232, 0.75);
+  padding: 4.5rem 3rem 3rem;
+  text-align: center;
+}
+
+footer .brand { display: inline-block; margin-bottom: 2rem; }
+
+footer nav {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-bottom: 2.6rem;
+}
+
+footer nav a {
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+footer nav a:hover { color: #fff; }
+
+footer .fine {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+}
+
+/* ── Responsive ───────────────────────────── */
+
+@media (max-width: 900px) {
+  header { padding: 1rem 1.4rem; flex-direction: column; gap: 0.9rem; }
+  header { position: absolute; }
+  header:not(.on-light) { background: linear-gradient(rgba(30,25,20,0.5), transparent); }
+  .nav-links { gap: 1.4rem; flex-wrap: wrap; justify-content: center; }
+  .services-card { grid-template-columns: 1fr; padding: 2.8rem 1.8rem; }
+  .split, .book-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .split.reverse .split-media { order: 0; }
+  .pillars { grid-template-columns: 1fr; }
+  .masonry { columns: 2; }
+  section { padding: 4.5rem 1.2rem; }
+}
+
+@media (max-width: 560px) {
+  .masonry { columns: 1; }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Juvenne Medical Esthetics</title>
+  <meta name="description" content="A look inside Juvenne — treatments, textures, and the results of science-based esthetics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <header id="site-header">
+    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="book.html" class="nav-book">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero short">
+    <img class="hero-bg" src="assets/img/facial-cleanse.jpg" alt="Facial cleanse in the Juvenne treatment room">
+    <div>
+      <p class="eyebrow">Inside the Clinique</p>
+      <h1>Gallery</h1>
+      <p class="lede">Treatments, textures, and the quiet luxury of skin cared for properly.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="masonry">
+      <figure><img src="assets/img/glow-closeup.jpg" alt="Close-up of luminous, even skin" loading="lazy"><figcaption>The Juvenne glow</figcaption></figure>
+      <figure><img src="assets/img/injectable.jpg" alt="Precision esthetic treatment performed in clinic" loading="lazy"><figcaption>Precision, always</figcaption></figure>
+      <figure><img src="assets/img/leaf-face.jpg" alt="Portrait with monstera leaf, skin-first beauty" loading="lazy"><figcaption>Nature meets science</figcaption></figure>
+      <figure><img src="assets/img/serum-drop.jpg" alt="Active serum applied with a dropper" loading="lazy"><figcaption>Active ingredients</figcaption></figure>
+      <figure><img src="assets/img/facial-mask.jpg" alt="Clinical mask application during a signature facial" loading="lazy"><figcaption>Signature facial</figcaption></figure>
+      <figure><img src="assets/img/jade-roller.jpg" alt="Jade roller and gua sha ritual tools" loading="lazy"><figcaption>Ritual tools</figcaption></figure>
+      <figure><img src="assets/img/cream-cheek.jpg" alt="Moisturiser applied to the cheek" loading="lazy"><figcaption>Barrier care</figcaption></figure>
+      <figure><img src="assets/img/products.jpg" alt="Curated clinical skincare products" loading="lazy"><figcaption>Curated formulas</figcaption></figure>
+      <figure><img src="assets/img/arm-swatches.jpg" alt="Texture swatches on the forearm" loading="lazy"><figcaption>Texture studies</figcaption></figure>
+      <figure><img src="assets/img/moisturizer-jar.jpg" alt="Hydrating gel moisturiser in a jar" loading="lazy"><figcaption>Hydration first</figcaption></figure>
+      <figure><img src="assets/img/smile.jpg" alt="A confident, natural smile" loading="lazy"><figcaption>Confidence, delivered</figcaption></figure>
+      <figure><img src="assets/img/leaf-dew.jpg" alt="Dew drops on a green leaf" loading="lazy"><figcaption>Fresh by nature</figcaption></figure>
+      <figure><img src="assets/img/flatlay-ritual.jpg" alt="Spa ritual flat lay with towel, salts and brush" loading="lazy"><figcaption>The ritual</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="quote" style="padding-top: 0;">
+    <blockquote>&ldquo;By the end of my treatment I felt like a new person — my skin felt lighter, brighter, and my mind was clear and calm.&rdquo;</blockquote>
+    <cite>Juvenne Client</cite>
+  </section>
+
+  <footer>
+    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="book.html">Book</a>
+    </nav>
+    <p class="fine">&copy; 2026 Juvenne Medical Esthetics. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    const onScroll = () => header.classList.toggle('solid', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+  </script>
+</body>
+</html>
