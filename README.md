@@ -23,5 +23,5 @@ python3 -m http.server 8000
 Photography from Unsplash (Kimia Kazemi, Ahmad Ebadi, Gideon Hezekiah, Amir
 Seilsepour, Sum Sum, Leighann Blackwood, Diana Light, Lesly Juarez, Nataliya
 Melnychuk, Mehran Khan, Content Pixie, PMV Chamara, Xandro Vandewalle, Enecta
-Cannabis Extracts, Kate Laine, Sergio Martins, Muthia Ashifa Salsabella), resized for web. Fonts: Cormorant Garamond & Jost via
+Cannabis Extracts, Kate Laine, Sergio Martins, Muthia Ashifa Salsabella, Look Studio), resized for web. Fonts: Cormorant Garamond & Jost via
 Google Fonts.
