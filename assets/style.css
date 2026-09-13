@@ -184,6 +184,12 @@ header.on-light .brand, header.on-light .nav-links a { color: var(--ink); }
 /* smaller page-top banner for inner pages */
 .hero.short { min-height: 62vh; }
 
+/* inner heroes sit on paler, busier photos — use a heavier, flat overlay
+   so the image reads as one tone and the light text stays legible */
+.hero.short::before {
+  background: rgba(32, 26, 21, 0.55);
+}
+
 /* ── Sections ─────────────────────────────── */
 
 section { padding: 7rem 1.5rem; }
