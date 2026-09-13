@@ -476,6 +476,8 @@ footer .fine {
   header { position: absolute; }
   header:not(.on-light) { background: linear-gradient(rgba(30,25,20,0.5), transparent); }
   .nav-links { gap: 1.4rem; flex-wrap: wrap; justify-content: center; }
+  .nav-links a.nav-book { border: none; padding: 0 0 0.25rem; }
+  .nav-links a.nav-book:hover { background: none; }
   .services-card { grid-template-columns: 1fr; padding: 2.8rem 1.8rem; }
   .split, .book-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .split.reverse .split-media { order: 0; }
