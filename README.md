@@ -1,6 +1,6 @@
-# Juvenne — Medical Esthetics by Shanelle Rene Gomez
+# DermaSelene — Medical Esthetics by Shanelle Rene Gomez
 
-Static marketing site for the Juvenne medical esthetics clinique. No build step —
+Static marketing site for the DermaSelene medical esthetics clinique. No build step —
 plain HTML/CSS with a shared stylesheet.
 
 ## Pages
@@ -8,7 +8,19 @@ plain HTML/CSS with a shared stylesheet.
 - `index.html` — landing page (hero, philosophy, services, founder)
 - `gallery.html` — masonry photo gallery
 - `about.html` — founder story and the three disciplines
-- `book.html` — booking request form (opens a pre-filled email)
+- `book.html` — booking request form, relayed by [FormSubmit](https://formsubmit.co)
+  to hello@dermaselene.com (free, no account). The first submission from a new
+  domain triggers a one-time activation email to that address — click the link
+  in it once, then every request lands in the inbox. Falls back to a `mailto:`
+  link if the relay is unreachable.
+
+## Assets
+
+- `assets/img/` — stock photography (Unsplash).
+- `assets/personal/` — real clinic photos/videos. Phone originals (`IMG_*.HEIC`,
+  `IMG_*.mp4`) are git-ignored; the gallery uses the converted `personal-*.jpg`
+  (max 1600px, q82) and `personal-*.mp4` (H.264, CRF 26, no audio) plus
+  `*-poster.jpg` frames.
 
 ## Develop
 

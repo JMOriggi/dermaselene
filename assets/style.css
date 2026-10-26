@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   JUVENNE — Medical Esthetics by Shanelle Rene Gomez
+   DERMASELENE — Medical Esthetics by Shanelle Rene Gomez
    Editorial, warm-neutral aesthetic
    ───────────────────────────────────────────── */
 
@@ -88,9 +88,8 @@ header.solid .nav-links a, header.solid .brand { color: var(--ink); }
 
 .brand {
   font-family: var(--serif);
-  font-size: 1.35rem;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
   color: #f3efe8;
 }
 
@@ -99,6 +98,7 @@ header.solid .nav-links a, header.solid .brand { color: var(--ink); }
   font-family: var(--sans);
   font-size: 0.52rem;
   letter-spacing: 0.4em;
+  text-transform: uppercase;
   color: inherit;
   opacity: 0.75;
   margin-top: 0.15rem;
@@ -128,10 +128,13 @@ header.solid .nav-links a, header.solid .brand { color: var(--ink); }
   padding: 0.65rem 1.6rem;
 }
 
-.nav-links a.nav-book:hover { background: var(--ink); border-color: var(--ink); }
+.nav-links a.nav-book:hover { background: var(--ink); border-color: var(--ink); color: #f3efe8; }
 
 /* pages without a dark hero get a dark header from the start */
 header.on-light .brand, header.on-light .nav-links a { color: var(--ink); }
+
+/* mobile-only controls (see the responsive block below) */
+.nav-toggle, .nav-backdrop { display: none; }
 
 /* ── Hero ─────────────────────────────────── */
 
@@ -193,6 +196,9 @@ header.on-light .brand, header.on-light .nav-links a { color: var(--ink); }
 /* ── Sections ─────────────────────────────── */
 
 section { padding: 7rem 1.5rem; }
+
+/* first section on pages without a hero: clear the fixed header */
+.page-top { padding-top: 10rem; }
 
 .narrow { max-width: 46rem; margin: 0 auto; text-align: center; }
 
@@ -348,6 +354,21 @@ section { padding: 7rem 1.5rem; }
 .masonry figure {
   break-inside: avoid;
   margin-bottom: 1.4rem;
+  overflow: hidden;
+}
+
+.masonry img,
+.masonry video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: var(--line);
+}
+
+.masonry video {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
 }
 
 .masonry figcaption {
@@ -461,6 +482,7 @@ section { padding: 7rem 1.5rem; }
 .book-info img { margin-top: 2.5rem; aspect-ratio: 4 / 3; object-fit: cover; }
 
 form.booking {
+  position: relative;
   background: var(--paper);
   border: 1px solid var(--line);
   padding: 3rem 2.6rem;
@@ -499,6 +521,22 @@ form.booking textarea:focus {
 }
 
 form.booking textarea { resize: vertical; min-height: 5.5rem; }
+
+/* honeypot field: hidden from people, visible to bots */
+form.booking .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+form.booking .form-status {
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+form.booking .form-status:empty { display: none; }
+
+form.booking .form-status.error { color: #9b3b2e; }
+
+form.booking .form-status a { text-decoration: underline; }
 
 form.booking .btn {
   margin-top: 2.4rem;
@@ -549,18 +587,84 @@ footer .fine {
 /* ── Responsive ───────────────────────────── */
 
 @media (max-width: 900px) {
-  header { padding: 1rem 1.4rem; flex-direction: column; gap: 0.9rem; }
-  header { position: absolute; }
-  header:not(.on-light) { background: linear-gradient(rgba(30,25,20,0.5), transparent); }
-  .nav-links { gap: 1.4rem; flex-wrap: wrap; justify-content: center; }
-  .nav-links a.nav-book { border: none; padding: 0 0 0.25rem; }
-  .nav-links a.nav-book:hover { background: none; }
+  /* slim fixed header: burger on the left, brand centred */
+  header { padding: 0.9rem 3.6rem; justify-content: center; text-align: center; }
+  header:not(.solid):not(.on-light) { background: linear-gradient(rgba(30,25,20,0.5), transparent); }
+  header.on-light:not(.solid) { background: rgba(239, 233, 225, 0.96); }
+
+  .nav-toggle {
+    display: block;
+    position: fixed;
+    top: 1.15rem;
+    left: 1.2rem;
+    z-index: 70;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #f3efe8;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  header.solid .nav-toggle, header.on-light .nav-toggle, body.nav-open .nav-toggle { color: var(--ink); }
+
+  .nav-toggle span {
+    position: absolute;
+    left: 0.45rem;
+    right: 0.45rem;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-toggle span:nth-child(1) { top: 0.8rem; }
+  .nav-toggle span:nth-child(2) { top: 1.2rem; }
+  .nav-toggle span:nth-child(3) { top: 1.6rem; }
+  body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(0.4rem) rotate(45deg); }
+  body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-0.4rem) rotate(-45deg); }
+
+  /* drawer */
+  #site-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(78vw, 20rem);
+    z-index: 60;
+    padding: 6rem 2.4rem 2.4rem;
+    background: var(--paper);
+    box-shadow: 1px 0 0 var(--line);
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    overflow-y: auto;
+  }
+  body.nav-open #site-nav { transform: none; }
+
+  #site-nav .nav-links { flex-direction: column; align-items: flex-start; gap: 1.9rem; }
+  #site-nav .nav-links a { color: var(--ink); font-size: 0.78rem; }
+  #site-nav .nav-links a.nav-book { margin-top: 0.6rem; padding: 0.75rem 1.8rem; }
+  #site-nav .nav-links a.nav-book:hover { background: var(--ink); color: #f3efe8; }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(30, 25, 20, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  body.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
+  body.nav-open { overflow: hidden; }
   .services-card { grid-template-columns: 1fr; padding: 2.8rem 1.8rem; }
   .split, .book-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .split.reverse .split-media { order: 0; }
   .pillars { grid-template-columns: 1fr; }
   .masonry { columns: 2; }
   section { padding: 4.5rem 1.2rem; }
+  .page-top { padding-top: 9.5rem; }
 }
 
 @media (max-width: 560px) {

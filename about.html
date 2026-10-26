@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Juvenne Medical Esthetics</title>
-  <meta name="description" content="Meet Shanelle Rene Gomez — model, communication scientist, and licensed esthetician. The story behind Juvenne.">
+  <title>About — DermaSelene Medical Esthetics</title>
+  <meta name="description" content="Meet Shanelle Rene Gomez — model, communication scientist, and licensed esthetician. The story behind DermaSelene.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 
   <header id="site-header">
-    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
-    <nav>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
+    <nav id="site-nav">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="gallery.html">Gallery</a></li>
@@ -24,12 +25,13 @@
       </ul>
     </nav>
   </header>
+  <div class="nav-backdrop"></div>
 
   <section class="hero short">
     <img class="hero-bg" src="assets/img/runway.jpg" alt="On the runway — where Shanelle's story began" style="object-position: center 22%;">
     <div>
       <p class="eyebrow">The Story</p>
-      <h1>About Juvenne</h1>
+      <h1>About DermaSelene</h1>
       <p class="lede">Where an insider's eye for beauty meets the rigour of skin science.</p>
     </div>
   </section>
@@ -44,7 +46,7 @@
         <h2>She knows what the camera sees</h2>
         <p>Shanelle built her career in modelling — an industry where your first appearance is your r&eacute;sum&eacute;. Years of castings, editorials, and runway seasons taught her precisely what it takes to look, and feel, ready for any room you walk into.</p>
         <p>But she wanted to understand the &ldquo;why&rdquo; behind the surface. A degree in communication science taught her how impressions are formed and how confidence is read. A licensed esthetics education gave her the clinical tools to shape them.</p>
-        <p>Juvenne is the result: the high-end beauty support once reserved for the modelling world — now accessible to everyone who walks through the door.</p>
+        <p>DermaSelene is the result: the high-end beauty support once reserved for the modelling world — now accessible to everyone who walks through the door.</p>
       </div>
     </div>
   </section>
@@ -68,13 +70,13 @@
       <div>
         <span class="num">03</span>
         <h3>Licensed Esthetics</h3>
-        <p>She completed the path with her esthetician's license from Atelier Esth&eacute;tique Institute of Esthetics in New York — a school training skin professionals since 1985 — grounding every Juvenne protocol in clinical practice.</p>
+        <p>She completed the path with her esthetician's license from Atelier Esth&eacute;tique Institute of Esthetics in New York — a school training skin professionals since 1985 — grounding every DermaSelene protocol in clinical practice.</p>
       </div>
     </div>
   </section>
 
   <section class="quote">
-    <blockquote>&ldquo;I spent years in a world where first impressions matter — castings, fittings, runways. I built Juvenne so you step into your big moments with the same preparation I had backstage.&rdquo;</blockquote>
+    <blockquote>&ldquo;I spent years in a world where first impressions matter — castings, fittings, runways. I built DermaSelene so you step into your big moments with the same preparation I had backstage.&rdquo;</blockquote>
     <cite>Shanelle Rene Gomez, Founder</cite>
     <div style="margin-top: 3.5rem;">
       <a class="btn" href="book.html">Begin Your Transformation</a>
@@ -82,7 +84,7 @@
   </section>
 
   <footer>
-    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
+    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>
@@ -90,14 +92,9 @@
       <a href="research.html">Research</a>
       <a href="book.html">Book</a>
     </nav>
-    <p class="fine">&copy; 2026 Juvenne Medical Esthetics. All rights reserved.</p>
+    <p class="fine">&copy; 2026 DermaSelene Medical Esthetics. All rights reserved.</p>
   </footer>
 
-  <script>
-    const header = document.getElementById('site-header');
-    const onScroll = () => header.classList.toggle('solid', window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-  </script>
+  <script src="assets/site.js?v=2"></script>
 </body>
 </html>

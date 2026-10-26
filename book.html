@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book — Juvenne Medical Esthetics</title>
-  <meta name="description" content="Reserve your consultation at Juvenne, the medical esthetics clinique by Shanelle Rene Gomez.">
+  <title>Book — DermaSelene Medical Esthetics</title>
+  <meta name="description" content="Reserve your consultation at DermaSelene, the medical esthetics clinique by Shanelle Rene Gomez.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 
-  <header id="site-header">
-    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
-    <nav>
+  <header id="site-header" class="on-light">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
+    <nav id="site-nav">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="gallery.html">Gallery</a></li>
@@ -24,17 +25,9 @@
       </ul>
     </nav>
   </header>
+  <div class="nav-backdrop"></div>
 
-  <section class="hero short">
-    <img class="hero-bg" src="assets/img/book-hero.jpg" alt="Looking in the hand mirror — ready for your moment" style="object-position: center 40%;">
-    <div>
-      <p class="eyebrow">Reservations</p>
-      <h1>Book Your Visit</h1>
-      <p class="lede">Every journey at Juvenne begins with a personal consultation and skin analysis.</p>
-    </div>
-  </section>
-
-  <section>
+  <section class="page-top">
     <div class="book-grid">
       <div class="book-info">
         <p class="eyebrow">How it works</p>
@@ -43,11 +36,17 @@
         <div class="detail"><span>Consultation</span><span>45 min</span></div>
         <div class="detail"><span>Signature Facial</span><span>60&ndash;90 min</span></div>
         <div class="detail"><span>Hours</span><span>Tue&ndash;Sat, 9:00&ndash;18:00</span></div>
-        <div class="detail"><span>Enquiries</span><span>hello@juvenne.clinic</span></div>
+        <div class="detail"><span>Enquiries</span><span>hello@dermaselene.com</span></div>
         <img src="assets/img/flatlay-ritual.jpg" alt="Spa ritual objects — towel, salts, brush">
       </div>
 
-      <form class="booking" id="booking-form">
+      <form class="booking" id="booking-form" action="https://formsubmit.co/hello@dermaselene.com" method="POST">
+        <!-- FormSubmit config: relayed to hello@dermaselene.com; see README -->
+        <input type="hidden" name="_subject" value="New appointment request — DermaSelene">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
         <label for="name">Full name</label>
         <input id="name" name="name" type="text" autocomplete="name" required>
 
@@ -74,12 +73,13 @@
 
         <button class="btn" type="submit">Request Appointment</button>
         <p class="form-note">We confirm every request personally within one business day.</p>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
 
   <footer>
-    <a class="brand" href="index.html">Juvenne<small>by Shanelle Rene Gomez</small></a>
+    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>
@@ -87,23 +87,45 @@
       <a href="research.html">Research</a>
       <a href="book.html">Book</a>
     </nav>
-    <p class="fine">&copy; 2026 Juvenne Medical Esthetics. All rights reserved.</p>
+    <p class="fine">&copy; 2026 DermaSelene Medical Esthetics. All rights reserved.</p>
   </footer>
 
+  <script src="assets/site.js?v=2"></script>
   <script>
-    const header = document.getElementById('site-header');
-    const onScroll = () => header.classList.toggle('solid', window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    onScroll();
+    const form = document.getElementById('booking-form');
+    const status = document.getElementById('form-status');
+    const button = form.querySelector('button[type="submit"]');
 
-    document.getElementById('booking-form').addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const f = e.target;
-      const body = encodeURIComponent(
-        `Name: ${f.name.value}\nEmail: ${f.email.value}\nPhone: ${f.phone.value}\n` +
-        `Treatment: ${f.treatment.value}\nPreferred date: ${f.date.value}\n\nNotes:\n${f.notes.value}`
-      );
-      window.location.href = `mailto:hello@juvenne.clinic?subject=${encodeURIComponent('Appointment request — ' + f.name.value)}&body=${body}`;
+      const data = new FormData(form);
+      data.set('_replyto', form.email.value);
+      button.disabled = true;
+      button.textContent = 'Sending\u2026';
+      status.textContent = '';
+      status.classList.remove('error');
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/hello@dermaselene.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        const json = await res.json();
+        if (!res.ok || json.success === 'false') throw new Error(json.message || res.statusText);
+        form.reset();
+        button.textContent = 'Request Sent';
+        status.textContent = 'Thank you \u2014 your request is on its way. We\u2019ll be in touch within one business day.';
+      } catch (err) {
+        button.disabled = false;
+        button.textContent = 'Request Appointment';
+        status.classList.add('error');
+        const body = encodeURIComponent(
+          `Name: ${form.name.value}\nEmail: ${form.email.value}\nPhone: ${form.phone.value}\n` +
+          `Treatment: ${form.treatment.value}\nPreferred date: ${form.date.value}\n\nNotes:\n${form.notes.value}`
+        );
+        const mailto = `mailto:hello@dermaselene.com?subject=${encodeURIComponent('Appointment request \u2014 ' + form.name.value)}&body=${body}`;
+        status.innerHTML = `Something went wrong sending your request. Please try again, or <a href="${mailto}">email us directly</a>.`;
+      }
     });
   </script>
 </body>
