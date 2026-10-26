@@ -719,6 +719,8 @@ footer .fine {
   .masonry { columns: 2; }
   section { padding: 4.5rem 1.2rem; }
   .page-top { padding-top: 9.5rem; }
+  footer { padding: 4rem 1.5rem 2.5rem; }
+  footer nav { flex-wrap: wrap; gap: 1.1rem 1.8rem; padding: 0 1rem; }
 }
 
 @media (max-width: 560px) {
