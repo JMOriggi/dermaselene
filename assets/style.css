@@ -339,6 +339,21 @@ section { padding: 7rem 1.5rem; }
 
 .split.reverse .split-media { order: 2; }
 
+/* muted media: softened photo under a layered cream wash, for quieter pages */
+.split-media.muted { position: relative; }
+
+.split-media.muted img { filter: saturate(0.55) contrast(0.92) brightness(1.02); }
+
+.split-media.muted::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(239, 233, 225, 0.15), rgba(239, 233, 225, 0.45)),
+    rgba(138, 125, 109, 0.12);
+}
+
 /* ── Pillars (about) ──────────────────────── */
 
 .pillars {
