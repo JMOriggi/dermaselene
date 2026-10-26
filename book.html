@@ -60,10 +60,11 @@
         <input id="email" name="email" type="email" autocomplete="email" required>
 
         <label for="phone">Phone</label>
-        <input id="phone" name="phone" type="tel" autocomplete="tel">
+        <input id="phone" name="phone" type="tel" autocomplete="tel" required>
 
         <label for="treatment">Treatment</label>
-        <select id="treatment" name="treatment">
+        <select id="treatment" name="treatment" required>
+          <option value="" disabled selected>Select a treatment</option>
           <option>Consultation &amp; Skin Analysis</option>
           <option>Signature Medical Facial</option>
           <option>Clinical-Grade Peel &amp; Resurfacing</option>
@@ -72,7 +73,7 @@
         </select>
 
         <label for="date">Preferred date</label>
-        <input id="date" name="date" type="date">
+        <input id="date" name="date" type="date" required>
 
         <label for="notes">Notes</label>
         <textarea id="notes" name="notes" placeholder="Skin concerns, goals, upcoming events&hellip;"></textarea>
