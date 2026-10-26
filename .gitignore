@@ -1,2 +1,3 @@
-# Raw phone originals — keep locally, commit only the converted web versions
+# Raw originals (phone media, 4000px logo masters): keep locally, commit only web versions
 assets/personal/IMG_*
+assets/logo/*_4000px.png

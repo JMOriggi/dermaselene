@@ -8,13 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <link rel="stylesheet" href="assets/style.css?v=4">
 </head>
 <body>
 
-  <header id="site-header">
+  <header id="site-header" class="on-light">
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
-    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
+    <a class="brand" href="index.html">
+      <img class="logo logo-light" src="assets/logo/logo-light.png" alt="" width="256" height="255">
+      <img class="logo logo-dark" src="assets/logo/logo-black.png" alt="" width="256" height="255">
+      <span class="brand-text">DermaSelene<small>by Shanelle Rene Gomez</small></span>
+    </a>
     <nav id="site-nav">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
@@ -27,16 +32,8 @@
   </header>
   <div class="nav-backdrop"></div>
 
-  <section class="hero short">
-    <img class="hero-bg" src="assets/img/gallery-hero.jpg" alt="Natural portrait with visible rosacea — real skin, honestly cared for" style="object-position: center 62%;">
-    <div>
-      <p class="eyebrow">Inside the Clinique</p>
-      <h1>Gallery</h1>
-      <p class="lede">Every skin, every story. Whatever your skin type, and whoever you are, there is a DermaSelene treatment shaped around you.</p>
-    </div>
-  </section>
-
-  <section>
+  <section class="page-top">
+    <h1 class="page-title">Take a look inside the clinique</h1>
     <div class="masonry">
       <figure><img src="assets/img/cream-cheek.jpg" alt="Moisturiser applied to the cheek" loading="lazy"><figcaption>Barrier care</figcaption></figure>
       <figure><img src="assets/personal/personal-2189.jpg" alt="Shanelle performing an AquaFirme facial, guiding the handpiece along a client's brow" loading="lazy"><figcaption>AquaFirme facial</figcaption></figure>
@@ -57,11 +54,14 @@
   </section>
 
   <section class="quote" style="padding-top: 0;">
-    <blockquote>&ldquo;By the end of my treatment I felt like a new person. My skin felt lighter, brighter, and my mind was clear and calm.&rdquo;</blockquote>
+    <blockquote>&ldquo;By the end of my treatment my skin felt lighter, brighter, and my mind was clear and calm.&rdquo;</blockquote>
   </section>
 
   <footer>
-    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
+    <a class="brand" href="index.html">
+      <img class="logo" src="assets/logo/logo-light.png" alt="DermaSelene emblem" width="256" height="255">
+      <span class="brand-text">DermaSelene<small>by Shanelle Rene Gomez</small></span>
+    </a>
     <nav>
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>

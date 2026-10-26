@@ -8,13 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <link rel="stylesheet" href="assets/style.css?v=4">
 </head>
 <body>
 
-  <header id="site-header">
+  <header id="site-header" class="on-light">
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
-    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
+    <a class="brand" href="index.html">
+      <img class="logo logo-light" src="assets/logo/logo-light.png" alt="" width="256" height="255">
+      <img class="logo logo-dark" src="assets/logo/logo-black.png" alt="" width="256" height="255">
+      <span class="brand-text">DermaSelene<small>by Shanelle Rene Gomez</small></span>
+    </a>
     <nav id="site-nav">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
@@ -27,16 +32,7 @@
   </header>
   <div class="nav-backdrop"></div>
 
-  <section class="hero short">
-    <img class="hero-bg" src="assets/img/runway.jpg" alt="On the runway — where Shanelle's story began" style="object-position: center 22%;">
-    <div>
-      <p class="eyebrow">The Story</p>
-      <h1>About DermaSelene</h1>
-      <p class="lede">Where an insider's eye for beauty meets the rigour of skin science.</p>
-    </div>
-  </section>
-
-  <section>
+  <section class="page-top">
     <div class="split">
       <div class="split-media">
         <img src="assets/img/glow-closeup.jpg" alt="Editorial close-up of flawless, camera-ready skin">
@@ -53,22 +49,21 @@
 
   <section class="services-wrap">
     <div class="narrow" style="margin-bottom: 4rem;">
-      <p class="eyebrow">The Career Path</p>
-      <h2 class="statement-h" style="font-family: var(--serif); font-weight:300; text-transform:uppercase; letter-spacing:0.22em; font-size: clamp(1.4rem, 3vw, 2rem);">Three Steps, One Standard of Care</h2>
+      <p class="eyebrow eyebrow-lg">The Career Path</p>
     </div>
     <div class="pillars">
       <div>
-        <span class="num">01</span>
+        <span class="num">2018</span>
         <h3>Modelling</h3>
         <p>Shanelle's career began as a model signed with one of New York's top agencies — years of castings, editorials, and runway seasons that taught her the standards of the image industry from the inside.</p>
       </div>
       <div>
-        <span class="num">02</span>
+        <span class="num">2022</span>
         <h3>Communication Science</h3>
         <p>She then earned her Bachelor's and Master's degrees in Communication Science — studying how first impressions are formed in seconds, and how appearance speaks before words do.</p>
       </div>
       <div>
-        <span class="num">03</span>
+        <span class="num">2026</span>
         <h3>Licensed Esthetics</h3>
         <p>She completed the path with her esthetician's license from Atelier Esth&eacute;tique Institute of Esthetics in New York — a school training skin professionals since 1985 — grounding every DermaSelene protocol in clinical practice.</p>
       </div>
@@ -76,15 +71,18 @@
   </section>
 
   <section class="quote">
-    <blockquote>&ldquo;I spent years in a world where first impressions matter — castings, fittings, runways. I built DermaSelene so you step into your big moments with the same preparation I had backstage.&rdquo;</blockquote>
-    <cite>Shanelle Rene Gomez, Founder</cite>
+    <blockquote>&ldquo;I built DermaSelene so you step into your big moments with the same preparation a backstage team of experts would give you.&rdquo;</blockquote>
+    <cite>Shanelle</cite>
     <div style="margin-top: 3.5rem;">
       <a class="btn" href="book.html">Begin Your Transformation</a>
     </div>
   </section>
 
   <footer>
-    <a class="brand" href="index.html">DermaSelene<small>by Shanelle Rene Gomez</small></a>
+    <a class="brand" href="index.html">
+      <img class="logo" src="assets/logo/logo-light.png" alt="DermaSelene emblem" width="256" height="255">
+      <span class="brand-text">DermaSelene<small>by Shanelle Rene Gomez</small></span>
+    </a>
     <nav>
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>

@@ -43,6 +43,8 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 1.6rem;
 }
 
+.eyebrow-lg { font-size: 0.82rem; }
+
 h1, h2, h3 {
   font-family: var(--serif);
   font-weight: 300;
@@ -87,11 +89,21 @@ header.solid {
 header.solid .nav-links a, header.solid .brand { color: var(--ink); }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
   font-family: var(--serif);
   font-size: 1.5rem;
   letter-spacing: 0.12em;
   color: #f3efe8;
 }
+
+.brand .logo { width: auto; height: 3rem; flex: none; }
+
+/* header shows the light emblem on dark heroes, the dark one on light/solid headers */
+header .logo-dark { display: none; }
+header.solid .logo-light, header.on-light .logo-light { display: none; }
+header.solid .logo-dark, header.on-light .logo-dark { display: block; }
 
 .brand small {
   display: block;
@@ -199,6 +211,18 @@ section { padding: 7rem 1.5rem; }
 
 /* first section on pages without a hero: clear the fixed header */
 .page-top { padding-top: 10rem; }
+
+/* in-page title for hero-less pages: eyebrow look, aligned with the content's left edge */
+.page-title {
+  max-width: 80rem;
+  margin: 0 auto 2.2rem;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.82rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
 
 .narrow { max-width: 46rem; margin: 0 auto; text-align: center; }
 
@@ -322,8 +346,13 @@ section { padding: 7rem 1.5rem; }
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
+  gap: 2rem;
   text-align: center;
+}
+
+.pillars > div {
+  border: 1px solid var(--line);
+  padding: 2.8rem 2rem 2.6rem;
 }
 
 .pillars h3 {
@@ -561,7 +590,9 @@ footer {
   text-align: center;
 }
 
-footer .brand { display: inline-block; margin-bottom: 2rem; }
+footer .brand { display: inline-flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+
+footer .brand .logo { height: 4.5rem; }
 
 footer nav {
   display: flex;
@@ -589,6 +620,8 @@ footer .fine {
 @media (max-width: 900px) {
   /* slim fixed header: burger on the left, brand centred */
   header { padding: 0.9rem 3.6rem; justify-content: center; text-align: center; }
+  .brand { gap: 0.7rem; }
+  .brand .logo { height: 2.5rem; }
   header:not(.solid):not(.on-light) { background: linear-gradient(rgba(30,25,20,0.5), transparent); }
   header.on-light:not(.solid) { background: rgba(239, 233, 225, 0.96); }
 
