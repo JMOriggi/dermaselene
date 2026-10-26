@@ -585,9 +585,15 @@ form.booking .form-status a { text-decoration: underline; }
 form.booking .btn {
   margin-top: 2.4rem;
   background: transparent;
+  color: var(--ink);
   cursor: pointer;
   width: 100%;
 }
+
+form.booking .btn:hover { background: var(--ink); color: var(--cream); }
+
+form.booking .btn:disabled { opacity: 0.6; cursor: default; }
+form.booking .btn:disabled:hover { background: transparent; color: var(--ink); }
 
 .form-note {
   margin-top: 1.4rem;

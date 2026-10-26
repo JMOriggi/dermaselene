@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png?v=2">
-  <link rel="stylesheet" href="assets/style.css?v=5">
+  <link rel="stylesheet" href="assets/style.css?v=6">
 </head>
 <body>
 
@@ -50,6 +50,7 @@
         <input type="hidden" name="_subject" value="New appointment request — DermaSelene">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://dermaselene.com/book.html?sent=1">
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <label for="name">Full name</label>
@@ -104,6 +105,17 @@
     const status = document.getElementById('form-status');
     const button = form.querySelector('button[type="submit"]');
 
+    const sentMessage = 'Thank you \u2014 your request is on its way. We\u2019ll be in touch within one business day.';
+
+    // Returning from the relay's redirect after a non-AJAX submission
+    if (new URLSearchParams(location.search).get('sent') === '1') {
+      button.disabled = true;
+      button.textContent = 'Request Sent';
+      status.textContent = sentMessage;
+      history.replaceState(null, '', location.pathname);
+      form.scrollIntoView({ block: 'center' });
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const data = new FormData(form);
@@ -122,17 +134,13 @@
         if (!res.ok || json.success === 'false') throw new Error(json.message || res.statusText);
         form.reset();
         button.textContent = 'Request Sent';
-        status.textContent = 'Thank you \u2014 your request is on its way. We\u2019ll be in touch within one business day.';
+        status.textContent = sentMessage;
       } catch (err) {
-        button.disabled = false;
-        button.textContent = 'Request Appointment';
-        status.classList.add('error');
-        const body = encodeURIComponent(
-          `Name: ${form.name.value}\nEmail: ${form.email.value}\nPhone: ${form.phone.value}\n` +
-          `Treatment: ${form.treatment.value}\nPreferred date: ${form.date.value}\n\nNotes:\n${form.notes.value}`
-        );
-        const mailto = `mailto:hello@dermaselene.com?subject=${encodeURIComponent('Appointment request \u2014 ' + form.name.value)}&body=${body}`;
-        status.innerHTML = `Something went wrong sending your request. Please try again, or <a href="${mailto}">email us directly</a>.`;
+        // The AJAX endpoint can sit behind a bot check that a background request
+        // cannot pass. Fall back to a normal form post: the browser navigates to the
+        // relay, which handles the check, delivers the email and redirects to _next.
+        button.textContent = 'Redirecting\u2026';
+        form.submit();
       }
     });
   </script>
