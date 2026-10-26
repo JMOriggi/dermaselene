@@ -9,6 +9,10 @@
   const backdrop = document.querySelector('.nav-backdrop');
   if (!toggle || !backdrop) return;
 
+  // The backdrop must share the header's stacking context, or it covers the
+  // open drawer and swallows taps on the links. Repair older cached markup.
+  if (backdrop.parentElement !== header) header.appendChild(backdrop);
+
   const isOpen = () => document.body.classList.contains('nav-open');
   const setOpen = (open) => {
     document.body.classList.toggle('nav-open', open);

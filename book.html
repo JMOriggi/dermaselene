@@ -38,8 +38,8 @@
         <p class="eyebrow">How it works</p>
         <h2>Your consultation</h2>
         <p>We start with a conversation and a clinical skin analysis. From there, Shanelle designs a protocol around your skin, your goals, and your calendar — whether that's an upcoming shoot, an important meeting, or simply the best version of your everyday self.</p>
-        <div class="detail"><span>Consultation</span><span>45 min</span></div>
-        <div class="detail"><span>Signature Facial</span><span>60&ndash;90 min</span></div>
+        <div class="detail"><span>Consultation</span><span>20 min</span></div>
+        <div class="detail"><span>Treatment</span><span>45 min</span></div>
         <div class="detail"><span>Hours</span><span>Tue&ndash;Sat, 9:00&ndash;18:00</span></div>
         <div class="detail"><span>Enquiries</span><span>hello@dermaselene.com</span></div>
         <img src="assets/img/flatlay-ritual.jpg" alt="Spa ritual objects — towel, salts, brush">
@@ -62,14 +62,11 @@
         <label for="phone">Phone</label>
         <input id="phone" name="phone" type="tel" autocomplete="tel" required>
 
-        <label for="treatment">Treatment</label>
+        <label for="treatment">Appointment type</label>
         <select id="treatment" name="treatment" required>
-          <option value="" disabled selected>Select a treatment</option>
-          <option>Consultation &amp; Skin Analysis</option>
-          <option>Signature Medical Facial</option>
-          <option>Clinical-Grade Peel &amp; Resurfacing</option>
-          <option>Lymphatic &amp; Sculpting Treatment</option>
-          <option>Camera-Ready Preparation</option>
+          <option value="" disabled selected>Select an option</option>
+          <option>Consultation (20 min)</option>
+          <option>Treatment (45 min)</option>
         </select>
 
         <label for="date">Preferred date</label>
@@ -100,7 +97,7 @@
     <p class="fine">&copy; 2026 DermaSelene Medical Esthetics. All rights reserved.</p>
   </footer>
 
-  <script src="assets/site.js?v=2"></script>
+  <script src="assets/site.js?v=3"></script>
   <script>
     const form = document.getElementById('booking-form');
     const status = document.getElementById('form-status');
