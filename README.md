@@ -1,4 +1,4 @@
-# DermaSelene — Medical Esthetics by Shanelle Rene Gomez
+# DermaSelene — Medical Esthetics by Shanelle Rene G.
 
 Static marketing site for the DermaSelene medical esthetics clinique. No build step —
 plain HTML/CSS with a shared stylesheet.
