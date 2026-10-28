@@ -342,7 +342,7 @@ section { padding: 7rem 1.5rem; }
 /* muted media: softened photo under a layered cream wash, for quieter pages */
 .split-media.muted { position: relative; }
 
-.split-media.muted img { filter: saturate(0.55) contrast(0.92) brightness(1.02); }
+.split-media.muted img { filter: saturate(0.7) contrast(0.96); }
 
 .split-media.muted::after {
   content: "";
@@ -350,8 +350,8 @@ section { padding: 7rem 1.5rem; }
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(239, 233, 225, 0.15), rgba(239, 233, 225, 0.45)),
-    rgba(138, 125, 109, 0.12);
+    linear-gradient(180deg, rgba(239, 233, 225, 0.08), rgba(239, 233, 225, 0.25)),
+    rgba(138, 125, 109, 0.06);
 }
 
 /* ── Pillars (about) ──────────────────────── */
