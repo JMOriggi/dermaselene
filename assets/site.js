@@ -27,35 +27,42 @@
   window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
 })();
 
-// Home gallery strip: every 3s one random tile crossfades to a photo not currently shown.
+// Home gallery strip: every 3s the next tile in turn (1,2,3,1,2,3…) crossfades to the next photo in the pool.
 (() => {
   const strip = document.getElementById('gallery-strip');
   if (!strip) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const pool = [
+  const pool = [            // the first three are the tiles' initial photos, in order
     { src: 'assets/personal/personal-2189.jpg', alt: 'Shanelle performing an AquaFirme facial', pos: 'center 30%' },
-    { src: 'assets/personal/personal-2185.jpg', alt: 'Inside the DermaSelene treatment room' },
-    { src: 'assets/personal/personal-2179.jpg', alt: 'A session at the clinique' },
-    { src: 'assets/personal/personal-2184-poster.jpg', alt: 'Treatment in progress' },
-    { src: 'assets/personal/personal-4631-poster.jpg', alt: 'Treatment in progress' },
     { src: 'assets/img/serum-drop.jpg', alt: 'Active serum applied with a dropper' },
     { src: 'assets/img/jade-roller.jpg', alt: 'Jade roller and gua sha ritual tools' },
+    { src: 'assets/personal/personal-2185.jpg', alt: 'Inside the DermaSelene treatment room' },
     { src: 'assets/img/cream-cheek.jpg', alt: 'Moisturiser applied to the cheek' },
+    { src: 'assets/personal/personal-2179.jpg', alt: 'A session at the clinique' },
     { src: 'assets/img/leaf-face.jpg', alt: 'Portrait with monstera leaf' },
+    { src: 'assets/personal/personal-2184-poster.jpg', alt: 'Treatment in progress' },
     { src: 'assets/img/arm-swatches.jpg', alt: 'Texture swatches on the forearm' },
+    { src: 'assets/personal/personal-4631-poster.jpg', alt: 'Treatment in progress' },
     { src: 'assets/img/smile.jpg', alt: 'A confident, natural smile' },
   ];
 
   const tiles = Array.from(strip.querySelectorAll('.strip-tile'));
   const shown = tiles.map((t) => t.querySelector('img').getAttribute('src'));
-  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  let tileIdx = 0;
+  let poolIdx = shown.length;   // the first three pool entries are already on screen
   let busy = false;
 
   const tick = () => {
     if (busy || document.hidden) return;
-    const i = Math.floor(Math.random() * tiles.length);
-    const next = pick(pool.filter((p) => !shown.includes(p.src)));
+    const i = tileIdx;
+    tileIdx = (tileIdx + 1) % tiles.length;
+    let next = null;
+    for (let n = 0; n < pool.length && !next; n++) {
+      const cand = pool[poolIdx % pool.length];
+      poolIdx++;
+      if (!shown.includes(cand.src)) next = cand;
+    }
     if (!next) return;
     const tile = tiles[i];
     const cur = tile.querySelector('img:not(.is-hidden)');
