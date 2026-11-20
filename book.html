@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png?v=2">
-  <link rel="stylesheet" href="assets/style.css?v=13">
+  <link rel="stylesheet" href="assets/style.css?v=14">
 </head>
 <body>
 
@@ -40,7 +40,8 @@
         <p>We start with a conversation and a skin analysis. From there, we design a protocol around your skin, your goals, and your calendar.</p>
         <div class="detail"><span>Consultation</span><span>20 min</span></div>
         <div class="detail"><span>Treatment</span><span>45 min</span></div>
-        <div class="detail"><span>Hours</span><span>Tue&ndash;Sat, 9:00&ndash;18:00</span></div>
+        <div class="detail"><span>Wed, Fri, Sat &amp; Sun</span><span>10:30 am &ndash; 4:00 pm</span></div>
+        <div class="detail"><span>Thursday</span><span>2:30 pm &ndash; 8:00 pm</span></div>
         <div class="detail"><span>Enquiries</span><span><a href="mailto:hello@dermaselene.com">hello@dermaselene.com</a></span></div>
         <div class="detail"><span>Phone</span><span><a href="tel:+17329079923">+1 732 907 9923</a></span></div>
         <img src="assets/img/flatlay-ritual.jpg" alt="Spa ritual objects — towel, salts, brush">
@@ -70,8 +71,21 @@
           <option>Treatment (45 min)</option>
         </select>
 
-        <label for="date">Preferred date</label>
-        <input id="date" name="date" type="date" required>
+        <label id="day-label">Preferred day</label>
+        <div class="slots" id="slots">
+          <div class="slots-nav">
+            <button type="button" class="slots-arrow" id="slots-prev" aria-label="Earlier week">&lsaquo;</button>
+            <span class="slots-range" id="slots-range"></span>
+            <button type="button" class="slots-arrow" id="slots-next" aria-label="Later week">&rsaquo;</button>
+          </div>
+          <div class="slots-days" id="slots-days" role="radiogroup" aria-labelledby="day-label"></div>
+          <label id="time-label">Preferred time</label>
+          <div class="slots-times" id="slots-times" role="radiogroup" aria-labelledby="time-label">
+            <span class="slots-hint">Choose a day first</span>
+          </div>
+        </div>
+        <input type="hidden" name="date" id="date">
+        <input type="hidden" name="time" id="time">
 
         <label for="notes">Notes</label>
         <textarea id="notes" name="notes" placeholder="Skin concerns, goals, upcoming events&hellip;"></textarea>
@@ -104,6 +118,77 @@
     const status = document.getElementById('form-status');
     const button = form.querySelector('button[type="submit"]');
 
+    // ── Day + time slot picker ──
+    // Opening schedule by weekday (0 = Sunday). Days not listed cannot be booked.
+    const SCHEDULE = {
+      0: ['10:30 am', '12:00 pm', '2:30 pm', '4:00 pm'],   // Sun
+      3: ['10:30 am', '12:00 pm', '2:30 pm', '4:00 pm'],   // Wed
+      4: ['2:30 pm', '4:00 pm', '6:30 pm', '8:00 pm'],     // Thu
+      5: ['10:30 am', '12:00 pm', '2:30 pm', '4:00 pm'],   // Fri
+      6: ['10:30 am', '12:00 pm', '2:30 pm', '4:00 pm'],   // Sat
+    };
+    const WEEKS_AHEAD = 8;
+    const dateInput = document.getElementById('date');
+    const timeInput = document.getElementById('time');
+    const daysEl = document.getElementById('slots-days');
+    const timesEl = document.getElementById('slots-times');
+    const rangeEl = document.getElementById('slots-range');
+    const prevBtn = document.getElementById('slots-prev');
+    const nextBtn = document.getElementById('slots-next');
+
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    // week 0 starts on this week's Wednesday (or the most recent one)
+    const weekStart = new Date(today);
+    weekStart.setDate(today.getDate() - ((today.getDay() - 3 + 7) % 7));
+    let week = 0;
+    const fmtMD = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+    const chip = (text, sub, onClick) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false');
+      if (sub) { const s = document.createElement('small'); s.textContent = sub; b.appendChild(s); }
+      b.appendChild(document.createTextNode(text));
+      b.addEventListener('click', onClick);
+      return b;
+    };
+    const select = (container, btn) => {
+      container.querySelectorAll('.chip').forEach((c) => { c.classList.toggle('is-on', c === btn); c.setAttribute('aria-checked', String(c === btn)); });
+    };
+
+    const renderTimes = (d) => {
+      timesEl.innerHTML = '';
+      timeInput.value = '';
+      if (!d) { timesEl.innerHTML = '<span class="slots-hint">Choose a day first</span>'; return; }
+      SCHEDULE[d.getDay()].forEach((t) => {
+        timesEl.appendChild(chip(t, null, (e) => { select(timesEl, e.currentTarget); timeInput.value = t; if (status.classList.contains('error')) { status.textContent = ''; status.classList.remove('error'); } }));
+      });
+    };
+
+    const renderDays = () => {
+      daysEl.innerHTML = '';
+      const start = new Date(weekStart); start.setDate(weekStart.getDate() + week * 7);
+      let first = null, last = null;
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(start); d.setDate(start.getDate() + i);
+        if (!SCHEDULE[d.getDay()]) continue;
+        first = first || d; last = d;
+        const b = chip(fmtMD(d), d.toLocaleDateString('en-US', { weekday: 'short' }), (e) => {
+          select(daysEl, e.currentTarget); dateInput.value = iso(d); renderTimes(d);
+        });
+        if (d < today) b.disabled = true;
+        if (dateInput.value === iso(d)) { b.classList.add('is-on'); b.setAttribute('aria-checked', 'true'); }
+        daysEl.appendChild(b);
+      }
+      rangeEl.textContent = `${fmtMD(first)} – ${fmtMD(last)}`;
+      prevBtn.disabled = week === 0;
+      nextBtn.disabled = week >= WEEKS_AHEAD - 1;
+    };
+    prevBtn.addEventListener('click', () => { week--; renderDays(); });
+    nextBtn.addEventListener('click', () => { week++; renderDays(); });
+    const resetSlots = () => { dateInput.value = ''; week = 0; renderDays(); renderTimes(null); };
+    renderDays();
+
     const sentMessage = 'Thank you \u2014 your request is on its way. We\u2019ll be in touch within one business day.';
 
     // Returning from the relay's redirect after a non-AJAX submission
@@ -117,6 +202,13 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      status.classList.remove('error');
+      if (!dateInput.value || !timeInput.value) {
+        status.classList.add('error');
+        status.textContent = 'Please choose a preferred day and time.';
+        document.getElementById('slots').scrollIntoView({ block: 'center', behavior: 'smooth' });
+        return;
+      }
       const data = new FormData(form);
       data.set('_replyto', form.email.value);
       button.disabled = true;
@@ -132,6 +224,7 @@
         const json = await res.json();
         if (!res.ok || json.success === 'false') throw new Error(json.message || res.statusText);
         form.reset();
+        resetSlots();
         button.textContent = 'Request Sent';
         status.textContent = sentMessage;
       } catch (err) {
