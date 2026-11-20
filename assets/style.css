@@ -356,7 +356,9 @@ section { padding: 7rem 1.5rem; }
 
 /* ── Gallery strip (three small photos, one crossfades at a time) ── */
 
-.gallery-strip { text-align: center; }
+/* top padding equals the button's bottom margin, so the button sits midway
+   between the previous section's edge and the photos */
+.gallery-strip { text-align: center; padding-top: 2.8rem; }
 
 .gallery-strip .btn { margin-bottom: 2.8rem; }
 
@@ -761,5 +763,6 @@ footer .fine {
 @media (max-width: 560px) {
   .masonry { columns: 1; }
   .strip { gap: 0.5rem; }
+  .gallery-strip { padding-top: 2.2rem; }
   .gallery-strip .btn { margin-bottom: 2.2rem; }
 }
