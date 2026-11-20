@@ -361,11 +361,11 @@ section { padding: 7rem 1.5rem; }
 .gallery-strip .btn { margin-bottom: 2.8rem; }
 
 .strip {
-  max-width: 54rem;
+  max-width: 76rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
+  gap: 1.5rem;
 }
 
 .strip-tile {
