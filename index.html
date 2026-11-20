@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png?v=2">
-  <link rel="stylesheet" href="assets/style.css?v=9">
+  <link rel="stylesheet" href="assets/style.css?v=10">
 </head>
 <body>
 
@@ -77,19 +77,15 @@
     </div>
   </section>
 
-  <!-- 4 · Gallery teaser: small photo left, short text right -->
-  <section class="teaser-wrap">
-    <div class="teaser">
-      <a class="teaser-media" href="gallery.html" aria-label="View the gallery">
-        <img src="assets/personal/personal-2189.jpg" alt="Shanelle performing an AquaFirme facial at the clinique" style="object-position: center 30%;">
-      </a>
-      <div class="teaser-text">
-        <p class="eyebrow">Gallery</p>
-        <h2>Inside the Clinique</h2>
-        <p>Real sessions, captured in the treatment room. See the space, the tools, and the care behind every visit.</p>
-        <a class="btn" href="gallery.html">View the Gallery</a>
-      </div>
+  <!-- 4 · Gallery strip: three small photos, one swaps every few seconds -->
+  <section class="gallery-strip">
+    <p class="eyebrow">Gallery</p>
+    <div class="strip" id="gallery-strip">
+      <figure class="strip-tile"><img src="assets/personal/personal-2189.jpg" alt="Shanelle performing an AquaFirme facial" style="object-position: center 30%;"></figure>
+      <figure class="strip-tile"><img src="assets/img/serum-drop.jpg" alt="Active serum applied with a dropper"></figure>
+      <figure class="strip-tile"><img src="assets/img/jade-roller.jpg" alt="Jade roller and gua sha ritual tools"></figure>
     </div>
+    <a class="btn" href="gallery.html">View the Gallery</a>
   </section>
 
   <footer>
@@ -107,6 +103,6 @@
     <p class="fine">&copy; 2026 DermaSelene Medical Esthetics. All rights reserved.</p>
   </footer>
 
-  <script src="assets/site.js?v=3"></script>
+  <script src="assets/site.js?v=4"></script>
 </body>
 </html>
