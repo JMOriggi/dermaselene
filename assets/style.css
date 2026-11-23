@@ -557,6 +557,8 @@ section { padding: 7rem 1.5rem; }
   gap: 1rem;
 }
 
+.book-info .detail span:last-child { text-align: right; }
+
 .book-info .detail:last-of-type { border-bottom: 1px solid var(--line); }
 
 .book-info img { margin-top: 2.5rem; aspect-ratio: 4 / 3; object-fit: cover; }
@@ -741,6 +743,17 @@ footer nav a {
 
 footer nav a:hover { color: #fff; }
 
+footer .footer-contact {
+  margin-bottom: 1.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 1.9;
+}
+
+footer .footer-contact a:hover { color: #fff; }
+
+footer .footer-contact .sep { margin: 0 0.6rem; opacity: 0.5; }
+
 footer .fine {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
@@ -833,6 +846,8 @@ footer .fine {
   .page-top { padding-top: 9.5rem; }
   footer { padding: 4rem 1.5rem 2.5rem; }
   footer nav { flex-wrap: wrap; gap: 1.1rem 1.8rem; padding: 0 1rem; }
+  footer .footer-contact a { display: block; }
+  footer .footer-contact .sep { display: none; }
 }
 
 @media (max-width: 560px) {
